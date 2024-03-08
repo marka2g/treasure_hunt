@@ -17,7 +17,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_08_214334) do
   create_table "games", force: :cascade do |t|
     t.string "email"
     t.integer "board_size"
-    t.integer "history", default: [], array: true
+    t.integer "move_history", default: [], array: true
+    t.integer "winning_distance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

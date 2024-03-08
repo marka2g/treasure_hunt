@@ -2,8 +2,8 @@ class Game < ApplicationRecord
   include TreasureHunt::HiddenLocation
   
   attr_accessor :current_position
-  attr_reader :board, :treasure_map
-
+  attr_reader :board, :treasure_map #, :winning_distance
+  
   validates :email, presence: true
   validates :board_size, presence: true
 
@@ -24,7 +24,7 @@ private
     @board = build_board()
     treasure_coords = x_y_ary(self.board_size - 1)
     @treasure_map = Treasure.new(@board[treasure_coords[0]][treasure_coords[1]], treasure_coords)
-    @history, self.current_position = Hash.new([]), [0, 0]
+    self.current_position = [0, 0]
   end
 
   # method needed to stub in the test
@@ -38,15 +38,15 @@ private
 
   def record_move(move_coords)
     calculate_current_position(move_coords)
-    @history[:hunts] <<= move_coords
+    self.move_history <<= move_coords
   end
 
   def distance_from_treasure
-    ((self.current_position[0] - @treasure_map.coords[0]).abs + (self.current_position[1] - @treasure_map.coords[1]).abs)
+    ((self.current_position[0] - @treasure_map.coords[0]).abs + (self.current_position[1] - @treasure_map.coords[1]).abs)  * 100
   end
 
   def winning_move?(move_coords)
-    distance_from_treasure() < 10
+    distance_from_treasure() < 1000
   end
 
   def calculate_current_position(coords)
@@ -55,15 +55,12 @@ private
 
   def win(move_coords)
     dist = distance_from_treasure()
-    @history[:win] = {
-      winning_distance: dist, 
-      winning_move: move_coords
-    }
-    [true, "The treasure is #{dist * 100} meters away - you win!"]
+    update({winning_distance: dist})
+    [true, "The treasure is #{dist} meters away - you win!"]
   end
 
   def keep_playing(move_coords)
-    [false, "Sorry, you are #{distance_from_treasure() * 100} meters away. Try again."]
+    [false, "Sorry, you are #{distance_from_treasure()} meters away. Try again."]
   end
 
 end
