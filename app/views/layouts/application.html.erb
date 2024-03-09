@@ -16,11 +16,7 @@
 
       <section class="pt-8">
         <% if user_signed_in? %>
-          <%#= link_to "profile", edit_user_registration_path %>
           <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "devise-submit" %>
-        <%# else %>
-          <%#= link_to "login", new_user_session_path  %>
-          <%#= link_to "signup", new_user_registration_path  %>
         <% end %>
       </section>
 
