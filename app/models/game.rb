@@ -1,12 +1,11 @@
 class Game < ApplicationRecord
-  include TreasureHunt::HiddenLocation
-  
   attr_accessor :current_position
-  attr_reader :board, :treasure_map #, :winning_distance
+  attr_reader :board, :treasure_map
   
   validates :email, presence: true
   validates :board_size, presence: true
-
+  encrypts :board_size, :treasure_x, :treasure_y, :plot_location
+  
   before_create :set_up
 
   def to_s
@@ -22,9 +21,9 @@ private
 
   def set_up
     @board = build_board()
-    treasure_coords = x_y_ary(self.board_size - 1)
-    @treasure_map = Treasure.new(@board[treasure_coords[0]][treasure_coords[1]], treasure_coords)
-    self.current_position = [0, 0]
+    @treasure_x, @treasure_y = x_y_ary(self.board_size.to_i - 1)
+    @plot_location = @board[@treasure_x][@treasure_y]
+    @current_position = [0, 0]
   end
 
   # method needed to stub in the test
@@ -33,7 +32,7 @@ private
   end
 
   def build_board
-    (1..self.board_size*self.board_size).each_slice(self.board_size).to_a
+    (1..self.board_size.to_i*self.board_size.to_i).each_slice(self.board_size.to_i).to_a
   end
 
   def record_move(move_coords)
@@ -42,7 +41,7 @@ private
   end
 
   def distance_from_treasure
-    ((self.current_position[0] - @treasure_map.coords[0]).abs + (self.current_position[1] - @treasure_map.coords[1]).abs)  * 100
+    ((@current_position[0] - @treasure_x.to_i).abs + (@current_position[1] - @treasure_y.to_i).abs)  * 100
   end
 
   def winning_move?(move_coords)
@@ -50,7 +49,7 @@ private
   end
 
   def calculate_current_position(coords)
-    self.current_position = [self.current_position[0] += coords[0], self.current_position[1] += coords[1]]
+    @current_position = [@current_position[0] += coords[0], @current_position[1] += coords[1]]
   end
 
   def win(move_coords)

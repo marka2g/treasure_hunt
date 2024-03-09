@@ -1,0 +1,23 @@
+<div>
+  <h1 class="text-4xl font-bold">Treasure Hunt Time!</h1>
+
+  <p>Move East/West & North/South. Each value represents 100 meters</p>
+
+  <%= form_with url: "/games/move", method: :post do |form| %>
+    <div class="flex">
+      <%= form.hidden_field :game_id, value: @game.id %>
+      <div>
+        <%= form.label "north(-) south(+)" %>
+        <%= form.number_field :north_south, in: -19..19  %>
+      </div>
+      <div>
+        <%= form.label "east(-) west(+)" %>
+        <%= form.number_field :east_west, in: -19..19  %>
+      </div>
+      
+      <%= form.button "Make a Move" %>
+    </div>
+
+  <% end %>
+
+</div>
