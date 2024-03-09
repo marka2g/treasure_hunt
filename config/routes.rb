@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  post "/games/:id", to: "games#move"
-  # get "/blog_posts/:id", to: "blog_posts#show", as: :blog_post
-  get 'games/move'
+  # post "/games/:id", to: "games#move"
+  post "/games/:id", to: "games#move", as: :move
+  # get 'games/move'
   devise_for :users
 
   get "up" => "rails/health#show", as: :rails_health_check
-  root "games#start"
+  root "games#start", as: :game_start
 end

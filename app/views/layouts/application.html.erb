@@ -7,24 +7,33 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="prose mx-auto">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <body class="mx-auto prose">
+    
+    <div class="flex flex-col">
 
-    <div>
-      <% if user_signed_in? %>
-        <%#= link_to "profile", edit_user_registration_path %>
-        <%= button_to "logout", destroy_user_session_path, method: :delete %>
-      <%# else %>
-        <%#= link_to "login", new_user_session_path  %>
-        <%#= link_to "signup", new_user_registration_path  %>
-      <% end %>
+      <section class="pt-8">
+        <% if user_signed_in? %>
+          <%#= link_to "profile", edit_user_registration_path %>
+          <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "devise-submit" %>
+        <%# else %>
+          <%#= link_to "login", new_user_session_path  %>
+          <%#= link_to "signup", new_user_registration_path  %>
+        <% end %>
+      </section>
+
+      <section>
+        <p class="alert"><%= alert %></p>
+        <p class="notice"><%= notice %></p>
+      </section>
+
+      <main class="my-8">
+        <%= yield %>
+      </main>
+      
     </div>
 
-    <%= yield %>
   </body>
 </html>

@@ -1,8 +1,10 @@
 # Treasure Hunt
-
 ## Security
 1. Encapsulation
-> `@treasure_map` is a `Data.define()` struct
+> used [Active Record `encrypts`](https://guides.rubyonrails.org/active_record_encryption.html)
+>> discus `.env` 
+>> 
+> ~~`@treasure_map` is a `Data.define()` struct~~
 
 Once the Game class is instantiated, the winning coordinates cannot be viewed or mutated. Game instance methods only have the ability to check the winning coordinates of the treasure map against an Array of guess coordinates.
 
@@ -10,6 +12,8 @@ Once the Game class is instantiated, the winning coordinates cannot be viewed or
 
 
 
+### Links
+[custom flashes](https://github.com/rails/rails/blob/main/actionpack/lib/action_controller/metal/flash.rb)
 
 
 ## Steps

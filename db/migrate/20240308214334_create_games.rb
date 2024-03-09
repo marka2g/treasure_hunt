@@ -6,7 +6,7 @@ class CreateGames < ActiveRecord::Migration[7.1]
       t.string :plot_location, default: "", null: false
       t.string :treasure_x, default: "", null: false
       t.string :treasure_y, default: "", null: false
-      t.integer :move_history, array: true, default: []
+      t.integer :current_position, array: true, default: [0, 0]
       t.integer :winning_distance
 
       t.timestamps

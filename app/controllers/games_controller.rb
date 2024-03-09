@@ -4,12 +4,25 @@ class GamesController < ApplicationController
 
   def start
     @game = Game.create(email: current_user.email, board_size: 20)
-    # @winnings = Game.winnings()
+    @winners = Game.ranked()
   end
 
   def move
-binding.pry
-    @game.move([params[:north_south].to_i, params[:east_west].to_i])
+    winning_move, message = @game.move([params[:north_south].to_i, params[:east_west].to_i])
+
+    respond_to do |format|
+      if winning_move
+        @game.save
+        format.html { redirect_to game_start_path, win: message }
+      else
+        format.html { redirect_to move_path(@game), miss: message } 
+      end
+    end
+
+  end
+
+  def game_end
+# binding.pry
   end
 
 private

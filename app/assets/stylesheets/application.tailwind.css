@@ -2,12 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
 @layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+  .devise-submit {
+    @apply px-4 py-2 border-0 rounded bg-neutral-200 hover:bg-neutral-300 border-neutral-300;
+  }
+  .number-input {
+    @apply focus:ring-1 focus:ring-purple-500 focus:ring-inset;
+  }
+  .submit {
+    @apply h-full px-4 py-3 mt-6 text-sm bg-purple-500 border-2 border-purple-800 hover:bg-purple-600 text-neutral-50;
   }
 }
 
-*/
+.msg-win {
+  @apply text-center rounded text-lime-700 bg-lime-300;
+}
+
+.msg-miss {
+  @apply text-center rounded bg-amber-300 text-amber-700;
+}
+
+.msg-notice {
+  @apply text-center text-green-900 bg-green-300 rounded;
+}
+
+.msg-alert {
+  @apply text-center text-red-800 bg-red-300 rounded;
+}
