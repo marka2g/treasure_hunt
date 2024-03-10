@@ -1,4 +1,8 @@
 # Treasure Hunt
+
+![non-cononicle UI](non_cononacle_game.png)
+
+
 ## Security
 1. Active Record Encryption
 > Implemented [Active Record `encrypts`](https://guides.rubyonrails.org/active_record_encryption.html)
