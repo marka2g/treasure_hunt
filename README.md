@@ -1,19 +1,39 @@
 # Treasure Hunt
 ## Security
-1. Encapsulation
-> used [Active Record `encrypts`](https://guides.rubyonrails.org/active_record_encryption.html)
->> discus `.env` 
->> 
-> ~~`@treasure_map` is a `Data.define()` struct~~
+1. Active Record Encryption
+> Implemented [Active Record `encrypts`](https://guides.rubyonrails.org/active_record_encryption.html)
+>> Encrypted values everywhere show up on server logs as `[FILTERED]`. If this was not the case, an attacker could parse an append-only log and cheat. 
+>>
+>> Also, the use of `Dotenv` allows for a `.env` file to provide `ENV` variables in the `TreasureHunt::Application` file. This initialized the encrypted keys that provide the machinery for ActiveRecord to safely persist encrypted values in a data store/database.
 
-Once the Game class is instantiated, the winning coordinates cannot be viewed or mutated. Game instance methods only have the ability to check the winning coordinates of the treasure map against an Array of guess coordinates.
+2. Class Encapsulation
+> In addition to the tools that ActiveRecord provides with model encapsulation, the `Game` class sets a distinction between `public` api methods and those that are only accessible to the class. This ensures that the state of the `Game` class is tightly controlled by the objects that are instantiated.
+>
+
+3. Devise for Authentication
+> [Devise](https://github.com/heartcombo/devise) is a Ruby gem that provides reasonable and safe authentication machinery.
 
 ## Game Logic
 
 
+## Todo
+- [ ] Email on on game win
+- [ ] build out end game
+- [ ] only allow one email per win
+- [ ] improve winnings list
+  - [ ] add pagination to winnings list 
+- [ ] Make a zight showing the game being played
+- [ ] fix broken tests from adding encryption. [see this gb issue](https://github.com/rails/rails/issues/48601)
+
+
+
+
 
 ### Links
-[custom flashes](https://github.com/rails/rails/blob/main/actionpack/lib/action_controller/metal/flash.rb)
+
+#### Flash Messages
+- [custom flashes](https://github.com/rails/rails/blob/main/actionpack/lib/action_controller/metal/flash.rb)
+- [nice post on flashes](https://spaquet.medium.com/rails-flash-what-you-need-to-know-41efb61659f2)
 
 
 ## Steps

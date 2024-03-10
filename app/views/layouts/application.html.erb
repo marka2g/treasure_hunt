@@ -6,30 +6,19 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="mx-auto prose">
-    
-    <div class="flex flex-col">
-
+  <body class="max-w-2xl pt-4 mx-auto prose">
+    <div class="flex flex-col gap-4">
       <section class="pt-8">
         <% if user_signed_in? %>
           <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "devise-submit" %>
         <% end %>
       </section>
-
-      <section>
-        <p class="alert"><%= alert %></p>
-        <p class="notice"><%= notice %></p>
-      </section>
-
-      <main class="my-8">
+      <main class="mt-4">
         <%= yield %>
       </main>
-      
     </div>
-
   </body>
 </html>

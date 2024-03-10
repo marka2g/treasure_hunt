@@ -1,11 +1,10 @@
-<section class="mb-2">
-  <%= render "layouts/flash" %>
-</section>
-
 <div>
   <h1 class="text-4xl font-bold text-center">🏴‍☠️ Hunt for the Treasure 🏴‍☠️</h1>
   <p class="text-xs italic font-semibold text-center">Move East/West & North/South. Each value represents 100 meters</p>
 
+  <section class="mb-2">
+    <%= render "layouts/flash" %>
+  </section>
 
   <%= render partial: "games/game", locals: {game: @game} %>
   <%= render partial: "games/score_board", locals: {winners: @winners} %>

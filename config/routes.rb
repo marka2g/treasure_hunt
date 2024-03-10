@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  # post "/games/:id", to: "games#move"
-  post "/games/:id", to: "games#move", as: :move
-  # get 'games/move'
-  devise_for :users
-
   get "up" => "rails/health#show", as: :rails_health_check
-  root "games#start", as: :game_start
+  devise_for :users
+  
+  resources :games
+
+  ## patch "/games/:id/move", to: "games#move", as: :move
+  # post "/games/:id/move", to: "games#move", as: :make_move
+  # get "/games/:id/move", to: "games#move", as: :get_move
+  # get 'games/:id/win/', to: "games#win", as: :win
+  root "games#play", as: :game_play
 end

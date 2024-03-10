@@ -24,6 +24,8 @@ private
     self.treasure_x, self.treasure_y = x_y_ary(self.board_size.to_i - 1)
     self.plot_location = build_board()[self.treasure_x.to_i][self.treasure_y.to_i]
     self.current_position = [0, 0]
+# for test
+puts  "x: #{self.treasure_x}, y: #{self.treasure_y}, plot: #{self.plot_location}"
   end
 
   def build_board
