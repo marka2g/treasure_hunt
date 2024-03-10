@@ -1,9 +1,185 @@
-
-
-
-
-<!-- never used -->
 # Treasure Hunt
+
+
+## Generators
+1. `Game` 
+>`rails g scaffold game user:references board_size:string treasure_x:string treasure_y:string current_position:integer winning_distance:integer`
+2. `Move`
+> `rails g scaffold move game:references x:integer y:integer winner:boolean`
+
+>`rails db:migrate:reset`
+
+### Proposed [model assoc architecture](https://guides.rubyonrails.org/association_basics.html#has-one-association-reference)
+
+[`rails generate migration` handy reference](https://railsnotes.xyz/blog/rails-generate-migration)
+
+>`game` `has_many` -> `moves`
+>> `Game` `has_many :moves`
+>
+>`move` `belongs_to` -> `game`
+>> `Move` `belongs_to :game`
+>>>```ruby
+>>>class Game < ApplicationRecord
+>>>  has_many :moves
+>>>end
+>>>create_table :moves do |t|
+>>>  t.references :game
+>>>  t.timestamps
+>>>end
+>>>```
+>
+>`game` `belongs_to` -> `user`
+>> `user` `has_one :game`
+>>
+>> **NOTE** `board_size`, `treasure_x` and `treasure_y` need to be strings to persist encrypted value
+>>
+>> `rails g scaffold game user:references board_size:string treasure_x:string treasure_y:string current_position:integer winning_distance:integer`
+>>
+>>>```ruby
+>>>class Game < ApplicationRecord
+>>>  belongs_to :user
+>>>end
+>>>class User < ApplicationRecord
+>>>  has_one :game
+>>>end
+>>>
+>>>create_table :games do |t|
+>>>  #t.belongs_to :user, index: { unique: true }, foreign_key: true
+>>>  t.references :user, index: { unique: true }, foreign_key: true
+>>>  t.string :board_size, default: "", null: false
+>>>  t.string :treasure_x, default: "", null: false
+>>>  t.string :treasure_y, default: "", null: false
+>>>  t.integer :current_position, array: true, default: [0, 0]
+>>>  t.integer :winning_distance
+>>>  t.timestamps
+>>>end
+>>>```
+>
+> `Move`
+> 
+>> `rails g scaffold move game:references move_x:integer move_y:integer winner:boolean`
+>
+>> `Move` `belongs_to :game`
+>>>```ruby
+>>>class Game < ApplicationRecord
+>>>  has_many :moves
+>>>end
+>>>create_table :moves do |t|
+>>>  t.references :game
+>>>  t.integer :move_x
+>>>  t.integer :move_y
+>>>  t.boolean :winner
+>>>  t.timestamps
+>>>end
+>>>```
+
+
+<!-- 
+  plot_location needed? -- nope 
+
+  also, maybe change to plot_number but still not needed to persist
+-->
+```ruby
+size = 20
+board = (1..19*19).each_slice(19).to_a
+board_twenty = (1..19*19).each_slice(19).to_a
+# size == 20
+[rand(0..size-1), rand(0..size-1)]
+#=> [6, 2]
+board[6][2] #=> 117
+board_twenty[6][2] #=> 117
+board[6][2] == board_twenty[6][2] #=> true
+
+size = 10
+board_ten = (1..9*9).each_slice(9).to_a
+[rand(0..size-1), rand(0..size-1)]
+# => [3, 1]
+board_ten[3][1] #=> 29
+
+
+# def x_y_ary(size)
+#   [rand(0..size-1), rand(0..size-1)]
+# end
+```
+
+
+
+
+<!-- create games -->
+```ruby
+$ rails g scaffold game user:references board_size:string treasure_x:string treasure_y:string current_position:integer winning_distance:integer
+
+
+   invoke  active_record
+   create    db/migrate/20240310175902_create_games.rb
+   create    app/models/game.rb
+   invoke    test_unit
+   create      test/models/game_test.rb
+   create      test/fixtures/games.yml
+   invoke  resource_route
+    route    resources :games
+   invoke  scaffold_controller
+   create    app/controllers/games_controller.rb
+   invoke    tailwindcss
+   create      app/views/games
+   create      app/views/games/index.html.erb
+   create      app/views/games/edit.html.erb
+   create      app/views/games/show.html.erb
+   create      app/views/games/new.html.erb
+   create      app/views/games/_form.html.erb
+   create      app/views/games/_game.html.erb
+   invoke    resource_route
+   invoke    test_unit
+   create      test/controllers/games_controller_test.rb
+   create      test/system/games_test.rb
+   invoke    helper
+   create      app/helpers/games_helper.rb
+   invoke      test_unit
+   invoke    jbuilder
+   create      app/views/games/index.json.jbuilder
+   create      app/views/games/show.json.jbuilder
+   create      app/views/games/_game.json.jbuilder
+```
+
+<!-- create moves -->
+```ruby
+rails g scaffold move game:references x:integer y:integer winner:boolean
+
+   invoke  active_record
+   create    db/migrate/20240310180454_create_moves.rb
+   create    app/models/move.rb
+   invoke    test_unit
+   create      test/models/move_test.rb
+   create      test/fixtures/moves.yml
+   invoke  resource_route
+    route    resources :moves
+   invoke  scaffold_controller
+   create    app/controllers/moves_controller.rb
+   invoke    tailwindcss
+   create      app/views/moves
+   create      app/views/moves/index.html.erb
+   create      app/views/moves/edit.html.erb
+   create      app/views/moves/show.html.erb
+   create      app/views/moves/new.html.erb
+   create      app/views/moves/_form.html.erb
+   create      app/views/moves/_move.html.erb
+   invoke    resource_route
+   invoke    test_unit
+   create      test/controllers/moves_controller_test.rb
+   create      test/system/moves_test.rb
+   invoke    helper
+   create      app/helpers/moves_helper.rb
+   invoke      test_unit
+   invoke    jbuilder
+   create      app/views/moves/index.json.jbuilder
+   create      app/views/moves/show.json.jbuilder
+   create      app/views/moves/_move.json.jbuilder
+```
+
+
+
+
+---
 ## Security
 1. Encapsulation
 > used [Active Record `encrypts`](https://guides.rubyonrails.org/active_record_encryption.html)

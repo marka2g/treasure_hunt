@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  board_size: MyString
+  treasure_x: MyString
+  treasure_y: MyString
+  current_position: 1
+  winning_distance: 1
+
+two:
+  user: two
+  board_size: MyString
+  treasure_x: MyString
+  treasure_y: MyString
+  current_position: 1
+  winning_distance: 1
