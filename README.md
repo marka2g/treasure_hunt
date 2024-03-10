@@ -27,6 +27,10 @@
   - [ ] or, [digging into Turbo with Rails 7 video](https://www.youtube.com/watch?v=0CSGsHnci2I)
 - [ ] Email on on game win 
   - [ ] reference [DHH Rails 7 Demo](https://www.youtube.com/watch?v=mpWFrUwAN88)
+    - [some github repos - google search](https://www.google.com/search?client=firefox-b-1-d&q=Rails+7%3A+The+Demo+github+source)
+      - [Rails 7 demo gist](https://gist.github.com/usutani/cd0336b9b2c36bf40ed7b26d3e09bb45)
+      - [Rails 7 demo repo 1 - 15 commits](https://github.com/nijicha/rails-7-demo/tree/main)
+      - [NOPE Rails 7 demo repo 2 - 2 commits](https://github.com/NishaVijai/ruby-on-rails-7-demo-application)
 - [ ] build out end game
 - [ ] only allow one email per win
 - [ ] improve winnings list
