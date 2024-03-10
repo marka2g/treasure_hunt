@@ -21,11 +21,18 @@
 
 
 ## Todo
-- [ ] Email on on game win
+- [ ] refactor using Turbo
+  - [ ] reference the [thoughtbot hotwire example repo](https://github.com/thoughtbot/hotwire-example-template?tab=readme-ov-file)
+  - [ ] reference [GoRails Twitter inline editing clone](https://www.youtube.com/watch?v=1WeKlk7GG80&t=941s)
+  - [ ] or, [digging into Turbo with Rails 7 video](https://www.youtube.com/watch?v=0CSGsHnci2I)
+- [ ] Email on on game win 
+  - [ ] reference [DHH Rails 7 Demo](https://www.youtube.com/watch?v=mpWFrUwAN88)
 - [ ] build out end game
 - [ ] only allow one email per win
 - [ ] improve winnings list
-  - [ ] add pagination to winnings list 
+  - [ ] add pagination to winnings list
+    - [ ] [hotwire-example-template - pagination](https://github.com/thoughtbot/hotwire-example-template/tree/hotwire-example-pagination?tab=readme-ov-file)
+  - [ ] reference the [thoughtbot hotwire example repo](https://github.com/thoughtbot/hotwire-example-template?tab=readme-ov-file)
 - [ ] Make a zight showing the game being played
 - [ ] fix broken tests from adding encryption. [see this gb issue](https://github.com/rails/rails/issues/48601)
 
