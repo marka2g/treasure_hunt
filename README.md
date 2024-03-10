@@ -16,6 +16,9 @@
 
 3. Devise for Authentication
 > [Devise](https://github.com/heartcombo/devise) is a Ruby gem that provides reasonable and safe authentication machinery.
+> 
+> copy devise views with `rails g devise:views`
+> 
 
 ## Game Logic
 
