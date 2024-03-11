@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_game, only: %i[ show edit update destroy ]
+  before_action :set_game, only: %i[ show ]
 
   # GET /games or /games.json
   def index
@@ -10,8 +10,8 @@ class GamesController < ApplicationController
   def play
     respond_to do |format|
       case 
-      when current_user.already_found_treasure?
-        format.html { redirect_to games_path(), notice: "Treasure found. Did you already spend it all?" }
+      when current_user.treasure_found?
+        format.html { redirect_to games_path(), notice: "💎 The treasure is #{@game.moves.last.distance_away.to_i} meters away - you win! 💎" }
       when current_user.started_the_hunt?
         @game = current_user.game
         format.html { render :play, notice: "Happy Hunting!" }
@@ -22,34 +22,17 @@ class GamesController < ApplicationController
     end
   end
 
-  # GET /games/1 or /games/1.json
   def show
-  end
-
-  # GET /games/1/edit
-  def edit
-  end
-
-  # PATCH/PUT /games/1 or /games/1.json
-  def update
     respond_to do |format|
-      if @game.update(game_params)
-        format.html { redirect_to game_url(@game), notice: "Game was successfully updated." }
-        format.json { render :show, status: :ok, location: @game }
+      case 
+      when current_user.treasure_found?
+        GamesMailer.winner(@game).deliver_later
+        format.html { redirect_to games_path(), win: "💎 The treasure is #{@game.moves.last.distance_away.to_i} meters away - you win! 💎" }
+      when current_user.missed_the_mark?
+        format.html { redirect_to play_game_path(), miss: "🙅🏽‍♂️ Sorry, you are #{@game.moves.last.distance_away.to_i} meters away. Try again. 🙅🏽‍♂️" }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
+        
       end
-    end
-  end
-
-  # REMOVE
-  # DELETE /games/1 or /games/1.json
-  def destroy
-    @game.destroy!
-    respond_to do |format|
-      format.html { redirect_to games_url, notice: "Game was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

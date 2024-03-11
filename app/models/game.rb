@@ -24,9 +24,6 @@ private
     self.treasure_x, self.treasure_y = random_coords(self.board_size.to_i - 1)
     self.plot_number = build_board()[self.treasure_x.to_i][self.treasure_y.to_i]
     self.current_position = [0, 0]
-# ----- for testing ----- REMOVE
-puts  "x: #{self.treasure_x}, y: #{self.treasure_y}, plot: #{self.plot_number}"
-# ----- for testing ----- REMOVE
   end
 
   def build_board

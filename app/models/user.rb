@@ -4,8 +4,12 @@ class User < ApplicationRecord
 
   has_one :game, dependent: :destroy
 
-  def already_found_treasure? 
+  def treasure_found? 
     game.present? and game.winning_distance.present? 
+  end
+  
+  def missed_the_mark? 
+    game.present? and !game.moves.last.winner 
   end
 
   def started_the_hunt?

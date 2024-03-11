@@ -25,9 +25,9 @@
 }
 
 .msg-notice {
-  @apply text-center text-green-900 bg-green-300 rounded;
+  @apply inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50;
 }
 
 .msg-alert {
-  @apply text-center text-red-800 bg-red-300 rounded;
+  @apply inline-block px-3 py-2 mb-5 font-medium text-red-500 rounded-lg bg-red-50;
 }
