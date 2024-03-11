@@ -1,7 +1,7 @@
 # Treasure Hunt Game
 
 ## Walk Through Video
-[![<img src="zight_recording.png" width="180"/>]](https://share.zight.com/ApuPmQZW)
+[![<img src="zight_recording.png" width="180"/>]](https://share.zight.com/geuB70lb)
 
 _NOTE: The treasure coordinates that appear on the log have been removed and have only been placed there to test the UI._
 

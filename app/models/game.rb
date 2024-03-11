@@ -11,7 +11,7 @@ class Game < ApplicationRecord
     validates :user_id
   end
 
-  scope :ranked, -> { where.not(winning_distance: nil).order(winning_distance: :asc) }
+  scope :ranked, -> { where.not(winning_distance: nil).order(winning_distance: :asc).order(created_at: :desc) }
 
   # this is here to stub in tests
   def random_coords(size)
@@ -24,9 +24,6 @@ private
     self.treasure_x, self.treasure_y = random_coords(self.board_size.to_i - 1)
     self.plot_number = build_board()[self.treasure_x.to_i][self.treasure_y.to_i]
     self.current_position = [0, 0]
-# ----- for testing ----- REMOVE
-puts  "x: #{self.treasure_x}, y: #{self.treasure_y}, plot: #{self.plot_number}"
-# ----- for testing ----- REMOVE
   end
 
   def build_board

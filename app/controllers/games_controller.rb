@@ -4,8 +4,7 @@ class GamesController < ApplicationController
 
   # GET /games or /games.json
   def index
-    @winners = Game.ranked()
-    @pagy, @winners = pagy(@winners)
+    @pagy, @winners = pagy(Game.ranked())
   end
 
   def play
