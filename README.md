@@ -17,13 +17,11 @@ _NOTE: The treasure coordinated that appear on the log have been removed and hav
 
 >> Also, the use of `Dotenv` allows for an `.env` file to provide `ENV` variables in the `TreasureHunt::Application` file. These environment variables are initialized the encrypted keys are used by ActiveRecord to safely persist values in a data store/database.
 
-
-
-1. Class Encapsulation
+2. Class Encapsulation
 > In addition to the tools that ActiveRecord provides with Model encapsulation, the `Move` class sets a distinction between `public` api methods and those that are only accessible to the class. This ensures that the state of the `Move` and `Game` classes are tightly controlled by the instantiated objects.
 >
 
-1. Devise for Authentication
+3. Devise for Authentication
 > [Devise](https://github.com/heartcombo/devise) is a Ruby gem that provides reasonable and safe authentication machinery.
 > 
 
