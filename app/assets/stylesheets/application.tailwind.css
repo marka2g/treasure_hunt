@@ -31,3 +31,37 @@
 .msg-alert {
   @apply inline-block px-3 py-2 mb-5 font-medium text-red-500 rounded-lg bg-red-50;
 }
+
+.pagy {
+  @apply flex pb-4 space-x-1 text-sm font-semibold text-neutral-500;
+
+  .page {
+    a {
+      @apply block px-3 py-1 rounded-lg bg-neutral-200;
+
+      &:hover {
+        @apply bg-neutral-300;
+      }
+    }
+
+    &.active a {
+      @apply text-white cursor-default bg-neutral-400;
+    }
+
+    &.disabled a {
+      @apply cursor-default text-neutral-300 bg-neutral-100;
+    }
+
+    &.gap {}
+
+    /* if you need to customize it */
+  }
+
+  .pagy-combo-input, &.pagy-items-selector-js {
+    @apply inline-block whitespace-nowrap bg-neutral-200 rounded-lg px-3 py-0.5;
+
+    input {
+      @apply border-none rounded-md bg-neutral-100;
+    }
+  }
+}

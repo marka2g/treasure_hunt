@@ -73,3 +73,5 @@ end
 
 
 gem "devise", "~> 4.9"
+
+gem "pagy", "~> 7.0"

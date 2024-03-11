@@ -3,8 +3,9 @@
     <%= render "layouts/game_flash" %>
   </section>
   
+  <h1 class="mt-4">Score Board</h1>
+  <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
   <div id="games" class="grid grid-cols-1 divide-y">
-    <h1 class="mt-4">Score Board</h1>
     <%= render @winners %>
   </div>
 
