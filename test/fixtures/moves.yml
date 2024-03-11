@@ -5,9 +5,11 @@ one:
   x: 1
   'y': 1
   winner: false
+  distance_away: MyString
 
 two:
   game: two
   x: 1
   'y': 1
   winner: false
+  distance_away: MyString

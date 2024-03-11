@@ -1,37 +1,5 @@
-<div id="<%= dom_id game %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= game.user_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Board size:</strong>
-    <%= game.board_size %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Treasure x:</strong>
-    <%= game.treasure_x %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Treasure y:</strong>
-    <%= game.treasure_y %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Current position:</strong>
-    <%= game.current_position %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Winning distance:</strong>
-    <%= game.winning_distance %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this game", game, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this game", edit_game_path(game), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+<div class="flex flex-row justify-between">
+  <div><%= game.user.email %></div>
+  <div><strong><%= pluralize game.moves.count, "move" %></strong></div>
+  <div><%= game.winning_distance %></div>
 </div>

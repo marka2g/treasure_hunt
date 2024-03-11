@@ -5,6 +5,7 @@ class CreateMoves < ActiveRecord::Migration[7.1]
       t.integer :x
       t.integer :y
       t.boolean :winner
+      t.string :distance_away
 
       t.timestamps
     end

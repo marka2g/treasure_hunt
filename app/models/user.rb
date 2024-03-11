@@ -1,10 +1,16 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  # devise :database_authenticatable, :registerable,
-  #        :recoverable, :rememberable, :validatable
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
 
-  has_one :game
+  has_one :game, dependent: :destroy
+
+  def already_found_treasure? 
+    game.present? and game.winning_distance.present? 
+  end
+
+  def started_the_hunt?
+    game.present? and game.winning_distance.blank?
+  end
+
+  def start_game?; game.blank?; end;
 end

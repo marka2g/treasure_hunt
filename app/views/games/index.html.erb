@@ -1,14 +1,12 @@
-<div class="w-full">
+<div class="max-w-3xl mx-auto">
   <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50" id="notice"><%= notice %></p>
   <% end %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Games</h1>
-    <%= link_to "New game", new_game_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  
+  <div id="games" class="grid grid-cols-1 divide-y">
+    <h1 class="mt-4">Score Board</h1>
+    <%= render @winners %>
   </div>
 
-  <div id="games" class="min-w-full">
-    <%= render @games %>
-  </div>
 </div>

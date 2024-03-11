@@ -1,27 +1,14 @@
-<div id="<%= dom_id move %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Game:</strong>
-    <%= move.game_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">X:</strong>
+<div id="<%= dom_id(move) %>" class="flex justify-between gap-2">
+  <div>
     <%= move.x %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Y:</strong>
+  </div>
+  <div>
     <%= move.y %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Winner:</strong>
-    <%= move.winner %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this move", move, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this move", edit_move_path(move), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+  </div>
+  <div>
+    <span class="font-semibold"><%= move.distance_away%></span>
+  </div>
+  <div>
+    <span class="font-semibold"><%= move.winner %></span>
+  </div>
 </div>
