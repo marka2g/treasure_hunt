@@ -11,20 +11,19 @@ _NOTE: The treasure coordinated that appear on the log have been removed and hav
 >> Encrypted values everywhere show up on server logs as `[FILTERED]`. If this was not the case, an attacker could parse an append-only log and cheat. 
 >
 
-> Sensitive values show up as `[FILTERED]`
 >
 ![`filtered`](./encrypted_game_parameters.png)
 
 
->> Also, the use of `Dotenv` allows for a `.env` file to provide `ENV` variables in the `TreasureHunt::Application` file. This initialized the encrypted keys that provide the machinery for ActiveRecord to safely persist encrypted values in a data store/database.
+>> Also, the use of `Dotenv` allows for an `.env` file to provide `ENV` variables in the `TreasureHunt::Application` file. These environment variables are initialized the encrypted keys are used by ActiveRecord to safely persist values in a data store/database.
 
 
 
-2. Class Encapsulation
+1. Class Encapsulation
 > In addition to the tools that ActiveRecord provides with Model encapsulation, the `Move` class sets a distinction between `public` api methods and those that are only accessible to the class. This ensures that the state of the `Move` and `Game` classes are tightly controlled by the instantiated objects.
 >
 
-3. Devise for Authentication
+1. Devise for Authentication
 > [Devise](https://github.com/heartcombo/devise) is a Ruby gem that provides reasonable and safe authentication machinery.
 > 
 
