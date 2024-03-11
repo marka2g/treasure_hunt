@@ -1,7 +1,7 @@
 # Treasure Hunt Game
 
 ## Walk Through Video
-[![game walk-thru zight video](https://store-images.s-microsoft.com/image/apps.33692.e848c375-c3bc-4a4b-a89f-1b575f1b00e6.45c01bd1-7a66-41a6-a648-efa6c70f50aa.ce887cfb-8305-40be-8d66-0194518d92b9.png)](https://share.zight.com/ApuPmQZW)
+[![<img src="zight_recording.png" width="180"/>]](https://share.zight.com/ApuPmQZW)
 
 
 ## Security
