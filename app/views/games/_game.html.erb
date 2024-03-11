@@ -1,0 +1,5 @@
+<div class="flex flex-row justify-between">
+  <div><%= game.user.email %></div>
+  <div><strong><%= pluralize game.moves.count, "move" %></strong></div>
+  <div><%= game.winning_distance %></div>
+</div>

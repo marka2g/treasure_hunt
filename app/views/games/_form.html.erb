@@ -1,0 +1,21 @@
+<%= form_with(model: game, id: "#{dom_id(game)}_form") do |form| %>
+  <div class="flex flex-row items-center gap-4">  
+    <% if game.errors.any? %>
+      <div id="error_explanation" class="px-3 py-2 mt-3 font-medium text-red-500 rounded-lg bg-red-50">
+        <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+        <ul>
+          <% game.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form.hidden_field :board_size, value: game.board_size %>
+
+    <div class="inline">
+      <%= form.submit "Start a Game", class: "rounded-lg py-3 px-5 bg-purple-600 text-white block font-medium" %>
+    </div>
+  </div>
+<% end %>
