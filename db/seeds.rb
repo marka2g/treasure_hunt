@@ -13,7 +13,9 @@ test_player.update!(
     password: "password",
     password_confirmation: "password"
   )
-  Game.create(user: user, board_size: 20, winning_distance: %w( 0 100 200 300 400 500 600 700 800 900).sample.to_i)
+  game = Game.create(user: user, board_size: 20)
+  game.moves.create!({x: 1, y: 1})
+  game.update!(winning_distance: %w( 0 100 200 300 400 500 600 700 800 900).sample.to_i)
 
   puts "User with email: #{user.email} created"
 end
