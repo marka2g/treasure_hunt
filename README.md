@@ -29,4 +29,4 @@ _NOTE: The treasure coordinated that appear on the log have been removed and hav
 > 
 
 ## Game Logic
-The game board consists of a multi-dimensional Ruby array where a randomly generated treasure plot is set on.  Once set, this ploy location is encrypted and the player needs to take guesses for North(_- negative_)/South(_+ positive_), East(_- negative_)/West(_+ positive_) move pairs. Each unit represents 100 meters.  Given more time, I would improve this interface but for a first pass, the primitive controls serve their purpose to play the game.
+The game board consists of a multi-dimensional Ruby array where a randomly generated treasure plot is set on.  Once set, this plot location is encrypted and the player takes guesses for North(_- negative_)/South(_+ positive_), East(_- negative_)/West(_+ positive_) move pairs. Each unit represents 100 meters. Given more time, I would improve this interface but for a first pass, the primitive controls serve their purpose to play the game.
