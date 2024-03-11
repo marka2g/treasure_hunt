@@ -5,10 +5,10 @@ class Move < ApplicationRecord
     validates :x
     validates :y
   end
-
-  # encrypts :distance_away
-  before_save :triangulate
+  
   broadcasts_to :game
+  
+  before_save :triangulate
 
 private
 
